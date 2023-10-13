@@ -15,16 +15,16 @@ use ReflectionProperty;
  */
 class Reflections
 {
-	#region Public Fields
+    #region Public Fields
     #endregion
-    
+
     #region Private Fields
     /**
      * @var ReflectionClass
      */
     private ReflectionClass $_reflectionClass;
     #endregion
-    
+
     #region Constructor
     /**
      * Reflections constructor.
@@ -39,7 +39,7 @@ class Reflections
         }
     }
     #endregion
-    
+
     #region Public Methods
     /**
      * @return ReflectionClass
@@ -52,14 +52,16 @@ class Reflections
     /**
      * @return object
      */
-    public function Instance() {
+    public function Instance()
+    {
         return $this->_reflectionClass->newInstance();
     }
 
     /**
      * @return string
      */
-    public function ShortName() {
+    public function ShortName()
+    {
         return $this->_reflectionClass->getShortName();
     }
 
@@ -67,7 +69,8 @@ class Reflections
      * @param int|null $filter
      * @return ReflectionMethod[]
      */
-    public function GetMethods(?int $filter) {
+    public function GetMethods(?int $filter)
+    {
         return $this->_reflectionClass->getMethods($filter);
     }
 
@@ -128,7 +131,7 @@ class Reflections
     public function GetMethodDocs(ReflectionMethod $method)
     {
         $reflectionMethod = $this->GetMethod($method->name);
-        if($reflectionMethod === false)
+        if ($reflectionMethod === false)
             return "";
 
         return $reflectionMethod->getDocComment();
@@ -141,16 +144,16 @@ class Reflections
     public function GetPropertyDocs(ReflectionProperty $property)
     {
         $reflectionProperty = $this->GetClassProperty($property->name);
-        if($reflectionProperty === false)
+        if ($reflectionProperty === false)
             return "";
 
         return $reflectionProperty->getDocComment();
     }
     #endregion
-    
+
     #region Private Methods
     #endregion
-    
+
     #region Helpers
     #endregion
 }

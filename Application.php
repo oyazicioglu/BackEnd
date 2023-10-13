@@ -12,7 +12,6 @@ use Core\Options\IDatabaseOption;
 use Core\Options\MysqlDatabaseOption;
 use Core\Route\RouteBase;
 use Core\Security\OriginBase;
-use Core\Libs\Helpers\DateTime;
 
 class Application
 {
@@ -25,19 +24,21 @@ class Application
 
     public function __construct()
     {
-        $this->applicationOption = new ApplicationOption(true, true);
+        $this->applicationOption = new ApplicationOption(true, false);
+
         $this->databaseOption = new MysqlDatabaseOption(
             "localhost",
             "MvcText",
             "MvcUser",
             "Crim41Mesh82",
-            "qifie",
-            "Crim41Mesh82"
+            "root",
+            ""
         );
 
         $this->origins = new Origins();
         $this->routes = new Routes();
         $this->dbContext = new ApplicationDbContext();
+        $this->applicationOption::SetContext($this->dbContext);
         $this->core = new Core($this->databaseOption, $this->applicationOption, $this->routes, $this->origins, $this->dbContext);
 
         $this->Seed();
@@ -52,6 +53,5 @@ class Application
 
     private function Seed()
     {
-
     }
 }

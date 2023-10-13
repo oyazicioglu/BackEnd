@@ -3,21 +3,19 @@
 
 namespace App;
 
-
-use App\DatabaseModels\License;
+use App\Test\Test;
 use Core\Database\DbContext;
 use Core\Database\ITableProxy;
 use Core\Database\MysqlTableProxy;
-use TestEntity;
 
 class ApplicationDbContext extends DbContext
 {
-    public ITableProxy $TestEntity;
+    public ITableProxy $Test;
 
     public function __construct()
     {
         parent::__construct();
 
-        $this->TestEntity = new MysqlTableProxy(TestEntity::class);
+        $this->Test = new MysqlTableProxy(Test::class);
     }
 }

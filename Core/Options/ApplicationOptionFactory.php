@@ -12,11 +12,13 @@ class ApplicationOptionFactory implements IApplicationOptionFactory
     {
     }
 
-    public function Set(IApplicationOption $applicationOption) {
+    public function Set(IApplicationOption $applicationOption)
+    {
         self::$_applicationOption = $applicationOption;
     }
 
-    public function Get(): IApplicationOption{
+    public function Get(): IApplicationOption
+    {
         return self::$_applicationOption;
     }
 }

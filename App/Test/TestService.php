@@ -1,8 +1,11 @@
 <?php
 
+namespace App\Test;
+
 use App\ApplicationDbContext;
 use Core\Http\HttpResponse;
 use Core\Libs\Helpers\Mapper;
+use Core\Options\ApplicationOption;
 
 class TestService
 {
@@ -10,18 +13,18 @@ class TestService
 
     public function __construct()
     {
-        $this->context = new ApplicationDbContext();
+        $this->context = ApplicationOption::$context;
     }
 
     public function Index()
     {
+        print_r("Ok");
         return HttpResponse::Ok();
     }
 
     public function List()
     {
-        $addLicense = $this->context->TestEntity->List();
-
+        $addLicense = $this->context->Test->List();
         return Mapper::Map($addLicense, License::class, true);
     }
 }

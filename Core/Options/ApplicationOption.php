@@ -2,6 +2,8 @@
 
 namespace Core\Options;
 
+use App\ApplicationDbContext;
+use Core\Database\DbContext;
 use Core\Exceptions\NoApplicationOptionException;
 use Exception;
 
@@ -12,65 +14,44 @@ use Exception;
 class ApplicationOption implements IApplicationOption
 {
     #region Public Fields
-    /**
-     * @var bool
-     * Determines if the environment type is development or production
-     */
+    public static ApplicationDbContext $context;
+    #endregion
+
+    #region Private Fields
     private ?bool $_isDevelopment;
-
-    /**
-     * @var bool|null
-     * Enable/Disable Reports
-     */
     private bool $_reportErrors;
-
-    /**
-     * @var bool
-     * Enable/Disable Migrations
-     */
     private ?bool $_enableMigration;
-
-    /**
-     * @var bool
-     */
     private bool $_filterOrigins;
-
     private int $_uploadSizeInMb = 256;
     #endregion
 
-    #endregion
 
     #region Constructor
-    /**
-     * ApplicationConfig constructor.
-     * @param bool $isDevelopment
-     * @param bool $enableMigration
-     * @param bool $reportErrors
-     * @param bool $filterOrigins
-     * @param int $uploadSizeInMb
-     */
     public function __construct(
         bool $isDevelopment,
         bool $enableMigration,
         bool $reportErrors = true,
         bool $filterOrigins = true,
-        int $uploadSizeInMb = 256)
-    {
+        int $uploadSizeInMb = 256,
+    ) {
         try {
             $this->_enableMigration = $enableMigration;
             $this->_isDevelopment = $isDevelopment;
             $this->_reportErrors = $reportErrors;
             $this->_filterOrigins = $filterOrigins;
             $this->_uploadSizeInMb = $uploadSizeInMb;
-
         } catch (Exception $e) {
             new NoApplicationOptionException();
         }
-
     }
     #endregion
 
     #region Public Methods
+    public static function SetContext(DBContext $context)
+    {
+        self::$context = $context;
+    }
+
     public function IsDevelopment(): bool
     {
         return $this->_isDevelopment;

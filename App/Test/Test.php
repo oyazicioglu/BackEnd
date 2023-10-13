@@ -1,8 +1,8 @@
 <?php
 
+namespace App\Test;
 
-
-class TestEntity
+class Test
 {
     /**
      * @var int

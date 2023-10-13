@@ -3,9 +3,9 @@
 
 namespace App;
 
+use App\Test\TestController;
 use Core\Http\Enums\RequestTypes;
 use Core\Route\RouteBase;
-use TestController;
 
 /**
  * Class Router

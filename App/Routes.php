@@ -3,9 +3,9 @@
 
 namespace App;
 
-use App\Controllers\LicenseController;
 use Core\Http\Enums\RequestTypes;
 use Core\Route\RouteBase;
+use TestController;
 
 /**
  * Class Router
@@ -25,8 +25,8 @@ class Routes extends RouteBase
     {
         parent::__construct();
 
-        $this->Add("license/add", LicenseController::class, "Add", RequestTypes::$Post)
-            ->Add("license/get", LicenseController::class, "Get", RequestTypes::$Post);
+        $this->Add("test/list", TestController::class, "List", RequestTypes::$Post);
+        $this->Add("test", TestController::class, "Index", RequestTypes::$Get);
     }
 
     #endregion

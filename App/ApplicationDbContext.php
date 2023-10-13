@@ -8,17 +8,16 @@ use App\DatabaseModels\License;
 use Core\Database\DbContext;
 use Core\Database\ITableProxy;
 use Core\Database\MysqlTableProxy;
+use TestEntity;
 
 class ApplicationDbContext extends DbContext
 {
-    public ITableProxy $Licenses;
+    public ITableProxy $TestEntity;
 
     public function __construct()
     {
         parent::__construct();
 
-        $this->Licenses = new MysqlTableProxy(License::class);
-
+        $this->TestEntity = new MysqlTableProxy(TestEntity::class);
     }
-
 }

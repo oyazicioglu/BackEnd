@@ -4,6 +4,7 @@ namespace App\Test;
 
 use Core\Controller;
 use Core\Entities\ErrorCodes;
+use Core\Exceptions\ForbiddenException;
 use Core\Http\HttpRequest;
 use Core\Http\HttpResponse;
 use Core\Libs\Helpers\RequestHelper;
@@ -21,6 +22,7 @@ class TestController extends Controller
 
     function Index()
     {
+        print_r($this->Request->Header);
         HttpResponse::Ok();
     }
 
